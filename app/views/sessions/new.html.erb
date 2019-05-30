@@ -1,0 +1,19 @@
+<div class = "row">
+  <div class = "col"></div>
+  <div class = "col">
+    <%= form_for User.new, url: sessions_path, method: :post, html:{ class: "form-signin"} do |f| %>
+      <h1 class="h3 mb-3 font-weight-normal text-center">Login</h1>
+      <div class ="form-group">
+        <%= f.label :username, 'Username: ', class:"sr-only" %>
+        <%= f.text_field :username, class:"form-control", placeholder: "Username", required: true %>
+      </div>
+      <div class ="form-group">
+        <%= f.label :password, 'Username: ', class:"sr-only" %>
+        <%= f.text_field :password, class:"form-control", placeholder: "Password", required: true %>
+      </div>
+      <%= f.submit 'Login',class: "btn btn-lg btn-primary btn-block" %>
+    <% end %>
+    <%= link_to 'sign up', new_user_path %>
+  </div>
+  <div class = "col"></div>
+</div>
