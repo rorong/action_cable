@@ -30,3 +30,7 @@ For prodction envinornment also include redis
 
 Install Gem:
 bundle install
+
+## Requiremnent
+* You need more than one user to verify app is working.
+* Three users with usernames testuser1, testuser2 and testuser3 with password same as username are mentioned in the seed.rb
