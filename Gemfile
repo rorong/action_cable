@@ -31,6 +31,14 @@ gem 'bootstrap', '~> 4.0.0'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
+gem 'rack-mini-profiler', require: false
+gem 'memory_profiler'
+gem 'traceroute'
+gem 'brakeman'
+gem "rails_best_practices"
+gem 'rubocop-rails', require: false
+gem "rubycritic", require: false
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
