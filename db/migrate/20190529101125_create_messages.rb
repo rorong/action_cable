@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# messages table structure
 class CreateMessages < ActiveRecord::Migration[5.2]
   def change
     create_table :messages do |t|

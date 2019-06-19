@@ -1,19 +1,19 @@
-class SessionsController < ApplicationController
+# frozen_string_literal: true
 
+# For User login logout and session maintenance
+class SessionsController < ApplicationController
   def new
-    if !logged_in?
-      @user = User.new
-      render 'new'
-    end
+    @user = User.new
+    render 'new' unless logged_in?
   end
 
   def create
     @user = User.find_by(username: login_params[:username])
-    if @user && @user.authenticate(login_params[:password])
+    if @user&.authenticate(login_params[:password])
       session[:user_id] = @user.id
       redirect_to root_path
     else
-      @error = "Invalid username or password"
+      @error = 'Invalid username or password'
       render 'new'
     end
   end
@@ -28,5 +28,4 @@ class SessionsController < ApplicationController
   def login_params
     params.require(:user).permit(:username, :password)
   end
-
 end

@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# For User registration
 class UsersController < ApplicationController
   def new
     @user = User.new
@@ -9,7 +12,7 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect_to root_path
     else
-      render ‘new’
+      render 'new'
     end
   end
 

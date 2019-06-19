@@ -1,26 +1,30 @@
+# frozen_string_literal: true
+
 require 'securerandom'
 
+# Chats controller to create and show chats among users
 class ChatsController < ApplicationController
   before_action :require_login
-
+  before_action :set_other_user, only: %i[create show]
+  before_action :set_chat, only: %i[create]
   def index
-    chats = current_user.chats
     @existing_chats_users = current_user.existing_chats_users
   end
 
   def create
-    @other_user = User.find(params[:other_user])
-    @chat = find_chat(@other_user) || Chat.new(identifier: SecureRandom.hex)
-    if !@chat.persisted?
+    unless @chat.persisted?
       @chat.save
       @chat.subscriptions.create(user_id: current_user.id)
       @chat.subscriptions.create(user_id: @other_user.id)
     end
-    redirect_to user_chat_path(current_user, @chat,  :other_user => @other_user.id)
+    redirect_to user_chat_path(
+      current_user,
+      @chat,
+      other_user: @other_user.id
+    )
   end
 
   def show
-    @other_user = User.find(params[:other_user])
     @chat = Chat.find_by(id: params[:id])
     @message = Message.new
   end
@@ -30,10 +34,8 @@ class ChatsController < ApplicationController
   def find_chat(second_user)
     chats = current_user.chats
     chats.each do |chat|
-      chat.subscriptions.each do |s|
-        if s.user_id == second_user.id
-          return chat
-        end
+      chat.subscriptions.each do |subs|
+        return chat if subs.user_id == second_user.id
       end
     end
     nil
@@ -43,4 +45,11 @@ class ChatsController < ApplicationController
     redirect_to new_session_path unless logged_in?
   end
 
+  def set_other_user
+    @other_user = User.find(params[:other_user])
+  end
+
+  def set_chat
+    @chat = find_chat(@other_user) || Chat.new(identifier: SecureRandom.hex)
+  end
 end

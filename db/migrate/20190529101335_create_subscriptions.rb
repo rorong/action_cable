@@ -1,3 +1,7 @@
+# frozen_string_literal: true
+
+# This migration will create intermediate table subscription
+# between chats and users
 class CreateSubscriptions < ActiveRecord::Migration[5.2]
   def change
     create_table :subscriptions do |t|
