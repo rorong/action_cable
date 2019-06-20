@@ -15,6 +15,8 @@ class User < ApplicationRecord
   has_many :messages, dependent: :destroy
   has_many :subscriptions, dependent: :destroy
   has_many :chats, through: :subscriptions, dependent: :destroy
+  validates :username, presence: true
+  validates :password, presence: true
 
   def existing_chats_users
     existing_chat_users = []
