@@ -28,6 +28,14 @@ For secure user password and aunthentication
 For prodction envinornment also include redis
 * gem 'redis'
 
+For unit testing
+* gem
+* gem 'rspec-rails', '~> 3.8'
+* gem 'factory_bot_rails'
+* gem 'shoulda-matchers'
+* gem 'rails-controller-testing'
+* gem 'capybara', '>= 2.15'
+
 Install Gem:
 bundle install
 
