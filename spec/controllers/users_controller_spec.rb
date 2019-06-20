@@ -11,7 +11,7 @@ RSpec.describe UsersController, type: :controller do
     it 'assigns a new user as @user' do
       get :new
       expect(assigns(:user)).to be_a_new(User)
-      expect(response).to be_success
+      expect(response).to be_successful
     end
   end
 
