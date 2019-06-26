@@ -19,4 +19,7 @@ RSpec.describe User, type: :model do
   it { expect(user).to have_many :messages }
   it { expect(user).to have_many :subscriptions }
   it { expect(user).to have_many(:chats).through(:subscriptions) }
+
 end
+
+

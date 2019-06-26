@@ -4,6 +4,7 @@ require 'rails_helper'
 
 RSpec.describe ChatsController, type: :controller do
   let(:chat) { create(:chat) }
+  let(:user) { create(:user) }
   let(:valid_attributes) { build(:chat).as_json }
   let(:invalid_attributes) {}
 
@@ -20,4 +21,7 @@ RSpec.describe ChatsController, type: :controller do
       end
     end
   end
+
+
+
 end
